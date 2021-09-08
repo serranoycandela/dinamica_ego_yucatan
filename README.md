@@ -1,0 +1,1 @@
+# dinamica_ego_yucatan
