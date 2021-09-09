@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <property key="dff.charset" value="windows-1252" />
+    <property key="dff.date" value="2021-Mar-11 16:25:47" />
+    <property key="dff.version" value="5.2.1.20201203" />
+    <functor name="CalcReciprocalSimilarityMap">
+        <property key="dff.functor.alias" value="calcReciprocalSimilarityMap512" />
+        <inputport name="firstMap" peerid="v4" />
+        <inputport name="secondMap" peerid="v5" />
+        <inputport name="windowSize">5</inputport>
+        <inputport name="useExponentialDecay">.yes</inputport>
+        <inputport name="cellType">.int8</inputport>
+        <inputport name="nullValue">.default</inputport>
+        <inputport name="exponentialDecayDivisor">2</inputport>
+        <outputport name="firstSimilarity" id="v1" />
+        <outputport name="firstMean" id="v2" />
+        <outputport name="secondSimilarity" id="v3" />
+    </functor>
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap513" />
+        <inputport name="filename">&quot;../insumos/usv_serie6_yuc_c4.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v4" />
+    </functor>
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap514" />
+        <inputport name="filename">&quot;../insumos/usv_serie6_yuc_c4.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v5" />
+    </functor>
+    <functor name="SaveMap">
+        <property key="dff.functor.alias" value="saveMap515" />
+        <inputport name="map" peerid="v1" />
+        <inputport name="filename">&quot;first_4_5.tif&quot;</inputport>
+        <inputport name="suffixDigits">2</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="useCompression">.yes</inputport>
+        <inputport name="workdir">.none</inputport>
+        <inputport name="ignoreCostlySparseCategories">.yes</inputport>
+    </functor>
+    <functor name="SaveMap">
+        <property key="dff.functor.alias" value="saveMap516" />
+        <inputport name="map" peerid="v3" />
+        <inputport name="filename">&quot;second_4_5.tif&quot;</inputport>
+        <inputport name="suffixDigits">2</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="useCompression">.yes</inputport>
+        <inputport name="workdir">.none</inputport>
+        <inputport name="ignoreCostlySparseCategories">.yes</inputport>
+    </functor>
+    <functor name="SaveTextFile">
+        <property key="dff.functor.alias" value="saveTextFile517" />
+        <inputport name="text" peerid="v2" />
+        <inputport name="filename">&quot;first_4_5_mean&quot;</inputport>
+        <inputport name="suffixDigits">2</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+    </functor>
+</script>

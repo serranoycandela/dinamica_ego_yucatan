@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <property key="dff.charset" value="windows-1252" />
+    <property key="dff.date" value="2021-Apr-23 18:53:22" />
+    <property key="dff.version" value="5.2.1.20201203" />
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap686" />
+        <inputport name="filename">&quot;../insumos/series_corregidas/usv_serie5_100m_v4_corregida.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v1" />
+    </functor>
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap687" />
+        <inputport name="filename">&quot;../insumos/series_corregidas/usv_serie6_100m_v4_corregida.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v2" />
+    </functor>
+    <functor name="DetermineTransitionMatrix">
+        <property key="dff.functor.alias" value="determineTransitionMatrix688" />
+        <property key="viewer.multistepmatrix" value="yes" />
+        <property key="viewer.singlestepmatrix" value="yes" />
+        <inputport name="initialLandscape" peerid="v1" />
+        <inputport name="finalLandscape" peerid="v2" />
+        <inputport name="timeSteps">5</inputport>
+        <outputport name="singleStepMatrix" id="v3" />
+    </functor>
+    <functor name="SaveTable">
+        <property key="dff.functor.alias" value="saveTable689" />
+        <inputport name="table" peerid="v3" />
+        <inputport name="filename">&quot;tm5_6.csv&quot;</inputport>
+        <inputport name="suffixDigits">2</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+    </functor>
+</script>

@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+v4_aptitud/
+insumos/
+dinamica_runs/
+v4_aptitud_evidence/cubo.tif
+

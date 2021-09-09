@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <property key="dff.charset" value="windows-1252" />
+    <property key="dff.date" value="2021-May-13 19:32:04" />
+    <property key="dff.version" value="5.2.1.20201203" />
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap687" />
+        <inputport name="filename">&quot;../insumos/series_corregidas/usv_serie5_100m_v4_corregida.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v1" />
+    </functor>
+    <functor name="LoadTable">
+        <property key="dff.functor.alias" value="loadTable804" />
+        <property key="viewer.table" value="yes" />
+        <inputport name="filename">&quot;../v4_aptitud/tm3_5_anual_custom.csv&quot;</inputport>
+        <inputport name="uniqueIdKeyColumnCreation">.ifNecessary</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="table" id="v2" />
+    </functor>
+    <containerfunctor name="Repeat">
+        <property key="dff.container.collapsed" value="no" />
+        <property key="dff.functor.alias" value="repeat507" />
+        <inputport name="iterations">12</inputport>
+        <inputport name="sequenceInput" peerid="v9" />
+        <internaloutputport name="step" id="v3" />
+        <functor name="Step">
+            <property key="dff.functor.alias" value="step508" />
+            <inputport name="step" peerid="v3" />
+        </functor>
+        <functor name="Patcher">
+            <property key="dff.functor.alias" value="patcher805" />
+            <inputport name="landscape" peerid="v5" />
+            <inputport name="changes" peerid="v9" />
+            <inputport name="transitionParameters">[&#x0A;    2-&gt;4 200 100 2,&#x0A;    7-&gt;2 200 100 1,&#x0A;    7-&gt;4 200 100 1,&#x0A;    9-&gt;2 200 600 1.5,&#x0A;    9-&gt;4 200 100 1,&#x0A;    11-&gt;2 200 100 1,&#x0A;    11-&gt;4 200 100 1,&#x0A;    14-&gt;2 200 100 1,&#x0A;    14-&gt;4 200 100 1&#x0A;]</inputport>
+            <inputport name="neighborWindowLines">3</inputport>
+            <inputport name="neighborWindowColumns">3</inputport>
+            <inputport name="pruneFactor">10</inputport>
+        </functor>
+        <functor name="CalcChangeMatrix">
+            <property key="dff.functor.alias" value="calcChangeMatrix803" />
+            <property key="viewer.changes" value="yes" />
+            <inputport name="landscape" peerid="v6" />
+            <inputport name="transitionMatrix" peerid="v2" />
+            <outputport name="changes" id="v4" />
+        </functor>
+        <functor name="Expander">
+            <property key="dff.functor.alias" value="expander484" />
+            <inputport name="landscape" peerid="v6" />
+            <inputport name="changes" peerid="v7" />
+            <inputport name="transitionParameters">[&#x0A;    2-&gt;4 200 100 2,&#x0A;    7-&gt;2 200 100 1,&#x0A;    7-&gt;4 200 100 1,&#x0A;    9-&gt;2 1600 600 1.5,&#x0A;    9-&gt;4 200 100 1,&#x0A;    11-&gt;2 200 100 1,&#x0A;    11-&gt;4 200 100 1,&#x0A;    14-&gt;2 200 100 1,&#x0A;    14-&gt;4 200 100 1&#x0A;]</inputport>
+            <inputport name="neighborWindowLines">3</inputport>
+            <inputport name="neighborWindowColumns">3</inputport>
+            <inputport name="pruneFactor">10</inputport>
+            <outputport name="changedLandscape" id="v5" />
+        </functor>
+        <functor name="SaveMap">
+            <property key="dff.functor.alias" value="saveMap806" />
+            <inputport name="filename">&quot;../v4_aptitud/cambio.tif&quot;</inputport>
+            <inputport name="suffixDigits">2</inputport>
+            <inputport name="step" peerid="v3" />
+            <inputport name="useCompression">.yes</inputport>
+            <inputport name="workdir">.none</inputport>
+            <inputport name="ignoreCostlySparseCategories">.yes</inputport>
+        </functor>
+        <functor name="MuxCategoricalMap">
+            <property key="dff.functor.alias" value="muxCategoricalMap509" />
+            <inputport name="initial" peerid="v1" />
+            <outputport name="map" id="v6" />
+        </functor>
+        <functor name="ModulateChangeMatrix">
+            <property key="dff.functor.alias" value="modulateChangeMatrix481" />
+            <inputport name="changes" peerid="v4" />
+            <inputport name="modulationRates">[&#x0A;    2-&gt;4 0.9,&#x0A;    7-&gt;2 0.5,&#x0A;    7-&gt;4 0.5,&#x0A;    9-&gt;2 0.8,&#x0A;    9-&gt;4 0.8,&#x0A;    11-&gt;2 0.5,&#x0A;    11-&gt;4 0.5,&#x0A;    14-&gt;2 0.9,&#x0A;    14-&gt;4 0.1&#x0A;]</inputport>
+            <outputport name="modulatedChanges" id="v7" />
+            <outputport name="complementaryChanges" id="v8" />
+        </functor>
+        <functor name="AddChangeMatrix">
+            <property key="dff.functor.alias" value="addChangeMatrix482" />
+            <inputport name="addend2" peerid="v8" />
+            <outputport name="sum" id="v9" />
+        </functor>
+    </containerfunctor>
+</script>
