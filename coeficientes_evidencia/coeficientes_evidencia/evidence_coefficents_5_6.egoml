@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<script>
+    <property key="dff.charset" value="windows-1252" />
+    <property key="dff.date" value="2021-Dec-04 14:12:23" />
+    <property key="dff.version" value="5.2.1.20201203" />
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap686" />
+        <inputport name="filename">&quot;../../insumos/series_corregidas/usv_serie5_100m_v4_corregida.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v1" />
+    </functor>
+    <functor name="LoadCategoricalMap">
+        <property key="dff.functor.alias" value="loadCategoricalMap687" />
+        <inputport name="filename">&quot;../../insumos/series_corregidas/usv_serie6_100m_v4_corregida.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v2" />
+    </functor>
+    <functor name="LoadMap">
+        <property key="dff.functor.alias" value="loadMap788" />
+        <inputport name="filename">&quot;../../insumos/cubo_aptitud/cubo.tif&quot;</inputport>
+        <inputport name="nullValue">.none</inputport>
+        <inputport name="storageMode">.default</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="map" id="v3" />
+    </functor>
+    <functor name="CalcDistanceMap">
+        <property key="dff.functor.alias" value="calcDistanceMap791" />
+        <inputport name="categoricalMap" peerid="v1" />
+        <inputport name="categories">[ 1, 2, 3, 4 ]</inputport>
+        <inputport name="cellType">.int32</inputport>
+        <inputport name="nullValue">.default</inputport>
+        <inputport name="truncateDistance">.no</inputport>
+        <outputport name="distance" id="v4" />
+    </functor>
+    <functor name="SaveWeights">
+        <property key="dff.functor.alias" value="saveWeights793" />
+        <inputport name="weights" peerid="v6" />
+        <inputport name="filename">&quot;c_coefficents_5_6.dcf&quot;</inputport>
+        <inputport name="suffixDigits">2</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+    </functor>
+    <functor name="LoadWeights">
+        <property key="dff.functor.alias" value="loadWeights796" />
+        <inputport name="filename">&quot;../rangos_coeficientes/ranges_5_6.dcf&quot;</inputport>
+        <inputport name="suffixDigits">0</inputport>
+        <inputport name="step">.none</inputport>
+        <inputport name="workdir">.none</inputport>
+        <outputport name="weights" id="v5" />
+    </functor>
+    <containerfunctor name="DetermineWeightsOfEvidenceCoefficients">
+        <property key="dff.container.collapsed" value="no" />
+        <property key="dff.functor.alias" value="determineWeightsOfEvidenceCoefficients794" />
+        <inputport name="initialLandscape" peerid="v1" />
+        <inputport name="finalLandscape" peerid="v2" />
+        <inputport name="ranges" peerid="v5" />
+        <inputport name="fixAbnormalWeights">.yes</inputport>
+        <outputport name="weights" id="v6" />
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap795" />
+            <inputport name="map" peerid="v4" />
+            <inputport name="mapName">&quot;distance&quot;</inputport>
+        </functor>
+        <functor name="NameMap">
+            <property key="dff.functor.alias" value="nameMap797" />
+            <inputport name="map" peerid="v3" />
+            <inputport name="mapName">&quot;cubo&quot;</inputport>
+        </functor>
+    </containerfunctor>
+</script>
