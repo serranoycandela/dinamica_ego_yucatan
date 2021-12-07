@@ -1,0 +1,241 @@
+\documentclass[12pt,a4paper,oldfontcommands]{article}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage[backend=biber,sorting=ydnt,block=none,bibstyle=nature,url=true,isbn=false,doi=true,maxbibnames=1000,style=apa]{biblatex}
+\addbibresource{biblio.bib}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{geometry}
+\usepackage{float}
+\geometry{
+	a4paper,
+	total={170mm,257mm},
+	left=20mm,
+	top=20mm,
+}
+
+\newenvironment{changemargin}[3]{%
+	\begin{list}{}{%
+			\setlength{\topsep}{#1}%
+			\setlength{\leftmargin}{#2}%
+			\setlength{\rightmargin}{#3}%
+			\setlength{\listparindent}{\parindent}%
+			\setlength{\itemindent}{\parindent}%
+			\setlength{\parsep}{\parskip}%
+		}%
+		\item[]}{\end{list}}
+
+
+
+%opening
+\title{Reporte técnico sobre escenarios de cambio de cobertura generados con un modelo markoviano}
+\author{Fidel Serrano Candela}
+\date{diciembre 2021}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Resumen}
+
+Este documento describe un modelo dinámico de cambio de cobertura para el estado de Yucatán, desarrollado en el marco de modelación DinamicaEGO. Es un modelo dinámico que cambia anualmente aplicando dos formas generales de cambiar la cobertura, expandir parches existentes y crear nuevos parches (functores expander y patcher). Estos functores expanden o crean nuevos parches basados en dos probabilidades, una general que se aplica a todas las celdas (matriz de transición) y otra que se aplica homogéneamente en el territorio (pesos de evidencia). La matriz de transición se puede calcular directamente a partir de la cobertura del territorio, mientras que los pesos de evidencia requieren capas geográficas adicionales, estas capas adicionales suelen contener información sobre aspectos que influyen en el cambio de cobertura. En este modelo se utilizaron como capas adicionales las capas de aptitud del territorio para cada sector productivo, que se crearon en el proceso de actualización del Ordenamiento Ecológico del Territorio del Estado de Yucatán.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/modelo.png}
+	\caption{Modelo markoviano (DinamicaEGO)}
+\end{figure}
+
+En términos prácticos DinamicaEGO ofrece herramientas para calcular tanto la matriz de transición como los pesos de evidencia, sin embargo los functores expander y patcher requieren información estadística sobre los nuevos parches como el área promedio, la varianza y la isometría para cada tipo de transición y DinamicaEGO no cuenta con módulos para calcular estas estadísticas. El área promedio y la varianza por tipo de transición se pueden calcular con una combinación de códigos de Python que corren en QGIS y códigos en R, mientras que la isometría se puede obtener en un proceso de calibración.
+
+En las secciones 2 y 3 se describen los cálculos de la matriz de transición y los pesos de evidencia dentro de DinamicaEGO, las secciones 4 y 5 describen la metodología para obtener la información sobre la distribución del área de los nuevos parches y el proceso de calibración para obtener la isometría y finalmente la sección 6 describe el modelo ya calibrado y los escenarios que produce.
+
+
+
+
+
+\section{Matriz de transición}
+La matriz de transición es una cuantificación de la proporción de celdas que cambiaron a cada distinta categoría y representa la probabilidad de que siendo de una categoría cambie a cada una de las otras categorías. DinamicaEGO proporciona un módulo para calcular la matriz de transición a partir de una capa inicial y una capa final.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/modelo_matriz.png}
+	\caption{Modelo en DinamicaEGO para calcular la matriz de transición}
+\end{figure}
+\label{fig:modelo_matriz}
+\bigskip
+
+Para nuestro caso se utilizaron la series 5 y 6 de uso de suelo y vegetación de INEGI,que corresponden a los años de 2011 y 2014 respectivamente, con una reclasificación que considera 8 categorías. El resultado del modelo que se ilustra en la figura 2, es un archivo en formato csv que contiene la matriz de transición en el formato de análisis de redes: \\
+\bigskip \\
+\begin{minipage}[c]{0.4\textwidth}
+	\begin{center}
+			\captionof{table}{Matriz de transición}\label{matriz}
+			\begin{tabular}{ S S S }
+				From & To & Rat{e} \\
+				\midrule
+				2 & 4 & 0.00135 \\ 
+				2 & 9 & 0.01131 \\ 
+				7 & 2 & 0.00016 \\ 
+				7 & 4 & 0.00003 \\ 
+				7 & 9 & 0.00023 \\ 
+				9 & 2 & 0.02972 \\ 
+				9 & 4 & 0.00064 \\ 
+				11 & 2 & 0.00625 \\ 
+				11 & 4 & 0.00253 \\ 
+				11 & 9 & 0.00969 \\ 
+			\end{tabular}
+			
+	\end{center}	
+\end{minipage}
+\begin{minipage}[b]{0.5\textwidth}
+	
+			\captionof{table}{Categorías de cobertura}\label{categorias}
+			\begin{tabular}{ S l }
+				Cat{e}goría & D{e}scripción \\
+				\midrule
+				1 & Acuícola \\
+				2 & Agropecuario \\
+				4 & Asentamiento humano \\
+				6 & Cuerpo de agua \\
+				7 & Manglar,petén,tular e hidrófila \\
+				9 & Selva \\
+				11 & Sin vegetación 
+			\end{tabular}
+			
+
+\end{minipage}
+
+
+
+
+
+\pagebreak
+
+
+	\begin{figure}[H]
+		\begin{center}
+			\begin{subfigure}[r]{1.12\textwidth}
+				\includegraphics[width=0.85\textwidth]{./figuras/serie5.png}
+				\caption{Serie 5 (2011)}
+			\end{subfigure}
+			\begin{subfigure}[r]{1.12\textwidth}
+				\includegraphics[width=0.85\textwidth]{./figuras/serie6.png}
+				\caption{Serie 6 (2014)}
+			\end{subfigure}
+			
+			\caption{Series 5 y 6 de uso de suelo y vegetación de INEGI, re-clasificadas.}
+		\end{center}
+		\label{fig:series}
+	\end{figure}
+
+
+
+
+
+
+
+
+
+
+\section{Pesos de evidencia}
+
+Los pesos de evidencia es un método Bayesiano que es usado tradicionalmente por geólogos para identificar áreas potenciales para fenómenos geológicos como la mineralización y la sismicidad \cite{agterberg_1992}. DinamicaEGO implementa una adaptación de este método para calcular las relaciones empíricas de variables espaciales.
+
+\subsection{Preparación de capas adicionales}
+Para utilizar el módulo de DinamicaEGO que sirve para calcular los pesos de evidencia, es necesario preparar un cubo con las capas adicionales, que en nuestro caso son las capas de aptitud para los sectores productivos. Estas capas fueron creadas en el contexto de la actualización del Ordenamiento Ecológico Territorial del Estado de Yucatán en 2021. 
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/cubo.png}
+	\caption{Modelo en DinamicaEGO para ensamblar el cubo con las capas adicionales}
+	\label{fig:cubo}
+\end{figure}
+
+El resultado del modelo que se muestra en la figura ~\ref{fig:cubo} es un raster multibanda que contiene todas las capas adicionales. Este raster multibanda se utilizará para el análisis de correlación y para la generación de los coeficientes de evidencia. 
+ 
+\subsection{Rangos de los coeficientes}
+
+ En el caso de que las capas adicionales sean de variables continuas, se requiere establecer los cortes para categorizarlas antes de calcular los pesos de evidencia. La figura ~\ref{fig:ranges} muestra el modelo en DinamicaEGO para calcular estos rangos. El resultado es un archivo con terminación dcf, que será el insumo para descartar correlaciones entre las capas y para obtener los coeficientes de evidencia.
+ 
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/ranges.png}
+	\caption{Modelo en DinamicaEGO para calcular los rangos de los pesos de evidencia}
+	\label{fig:ranges}
+\end{figure}
+\subsection{Correlación}
+Una de las ventajas del método de pesos de evidencia es que el efecto de cada capa geográfica puede calcularse independientemente. La única suposición que se requiere es que las capas adicionales sean espacialmente independientes. Esta prueba se puede realizar por medio de un módulo de DinamicaEGO que compara por pares las capas adicionales mediante el Coeficiente de Cramers, el Coeficiente de Contingencia y la Incertidumbre Informativa Conjunta \cite{cap8_1994}. Como resultado de estas pruebas, si algún par de capas resultan correlacionadas se puede eliminar alguna de las dos o combinar entre ellas.
+ 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/correlacion.png}
+	\caption{Modelo en DinamicaEGO para generar un reporte de correlaciones}
+\end{figure}
+Los resultados muestran que no hay correlaciones suficientemente altas para justificar suprimir capas del cubo y por lo tanto del procedimiento para obtener los pesos de evidencia.
+\subsection{Coeficientes de evidencia}
+En el último paso para obtener los pesos de evidencia se utilizan los rangos obtenidos anteriormente en conjunción con el cubo de capas adicionales. La figura ~\ref{fig:evidence} muestra el modelo en DinamicaEGO que lo hace.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/evidence.png}
+	\caption{Modelo en DinamicaEGO para calcular los pesos de evidencia}
+	\label{fig:evidence}
+\end{figure}
+\section{Análisis de parches}
+Esta sección describe el procedimiento externo al entorno de DinamicaEGO que se puede seguir para obtener el tamaño promedio de parche nuevo y la varianza de este tamaño. El procedimiento a grandes rasgos consiste en aislar las celdas que cambiaron de categoría, agruparlas por contigüidad, separarlas por tipo de transición, obtener sus áreas y finalmente calcular el promedio y la varianza para cada tipo de transición.
+\subsection{Extracción de parches nuevos}
+Para la extracción de parches nuevos se desarrolló un código de Python en QGIS que además de separar los grupos nuevos de celdas de cada categoría, les adiciona la información necesaria para posteriormente computar las estadísticas para cada tipo de transición, es decir, el área del grupo de celdas y la categoría mayoritaria de la que cambiaron. Para lograr esto se convierten los grupos de celdas (parches) a formato vectorial y ya en ese formato se le agregan los datos pertinentes. El código que implementa este procedimiento se puede descargar en: \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/separate_patches_all.py}
+
+El resultado es una carpeta con capas vectoriales para cada tipo de transición, estas capas vectoriales contienen los objetos espaciales, así como los datos asociados a este (área, categoría previa, contigüidad con un parche previo). 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/parches.png}
+	\caption{Parches agropecuarios nuevos en QGIS}
+	\label{fig:parches}
+\end{figure}
+
+
+\subsection{Proporción de parches disconexos}
+Una vez preparadas las capas vectoriales, se procede a obtener las estadísticas usando el lenguaje de programación R. Los archivos vectoriales producidos en el paso anterior se componen de varios archivos, uno de ellos es la tabla con los datos de los objetos espaciales, es un archivo con terminación dbf. Los archivos dbf se pueden leer directamente en el entorno de R y una vez ahí, calcular la proporción de cada transición que sucede contiguo a un parche previo, estos datos se guardan en un archivo csv que alimentará tanto el análisis de isometría como la generación de escenarios futuros. El código que implementa este procedimiento se puede descargar en:  \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/patch_stats_1985_2014.R}
+\subsection{Cálculo de estadísticas de parches}
+Los archivos vectoriales producidos en el paso anterior se componen de varios archivos, uno de ellos es la tabla con los datos de los objetos espaciales, es un archivo con terminación dbf. Los archivos dbf se pueden leer directamente en el entorno de R y una vez ahí, calcular las estadísticas necesarias es decir, el tamaño promedio de un nuevo parche y la varianza de este tamaño, para cada tipo de transición. El código que implementa este procedimiento se puede descargar en:  \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/patch_stats_1985_2014.R}. El resultado de este script son archivos csv en el formato que se requieren para los functores patcher y expander en DinamicaEGO.
+\section{Calibración de la isometría}
+El valor de la isometría para cada tipo de transición es utilizado por los functores patcher y expander para controlar el grado de compacidad que tendrán los nuevos parches. En términos prácticos en DinamicaEGO se utiliza como un factor que multiplica la probabilidad local a la hora de agregar nuevas celdas a un parche que se está creando. Por esta razón no existe una forma analítica de calcular la isometría, por lo que se requiere encontrar el valor óptimo para la isometría a través de un proceso de calibración. 
+\subsection{Simulaciones variando la isometría}
+Para encontrar el valor óptimo se requiere probar el modelo para distintos valores de la isometría y comparar estas simulaciones con una capa observada, en nuestro caso conseguimos eso partiendo de la serie 5 de uso de suelo y vegetación de INEGI y comparando los resultados de las simulaciones con la serie 6. Dado que el modelo es estocástico en el sentido de que se basa en probabilidades y cada vez que se corre produce resultados distintos, se corrieron 20 simulaciones para cada valor de la isometría, con el propósito de comparar cada una de estas simulaciones con la capa esperada y luego promediar estas comparaciones. Los valores que para la isometría fueron [0,0.1,0.2,...,1.9,2].
+
+DinamicaEGO guarda las rutas a las capas de insumos como rutas relativas, es decir que buscará a partir de la carpeta donde se encuentra guardado un modelo, por lo que si se copia un modelo de una carpeta a otra en la misma metacarpeta, DinamicaEGO automáticamente encontrará los insumos necesarios para correr el modelo. Aprovechando ese hecho se implementó un script de Python que crea carpetas para cada valor de la isometría y copia el mismo modelo a todas las carpetas, variando únicamente el valor de la isometría. El código que implementa este procedimiento se puede descargar en:  \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/isometry_analysis/create_run_folders.py}
+
+
+\subsection{Determinación de la isometría óptima}
+Una vez creadas las carpetas con sus respectivos modelos, se corrieron todas las simulaciones y se procedió a hacer las comparaciones con lo esperado, para realizar las comparaciones se utilizó un módulo de DinamicaEGO que calcula la similitud de las diferencias y requiere las capas inicial y final y el resultado de una simulación específica.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/similitud.png}
+	\caption{Modelo en DinamicaEGO para calcular similitud de las diferencias}
+\end{figure}
+\bigskip
+Se aplicaron estás comparaciones para las 20 simulaciones de cada una de las 21 isometrías probadas, es decir un total de 420 simulaciones y sus respectivas comparaciones con lo esperado. Posteriormente se promediaron los resultados por cada valor de la isometría. La figura ~\ref{fig:isometria} muestra los resultados agregados por valor de la isometría.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{./figuras/similitud_isometria.png}
+	\caption{Promedio de similitud de las diferencias por valor de isometría}
+	\label{fig:isometria}
+\end{figure}
+\bigskip
+
+\section{Escenario tendencial}
+blabla
+
+\newpage
+\printbibliography
+
+\end{document}
