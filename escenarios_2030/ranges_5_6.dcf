@@ -1,0 +1,462 @@
+:cubo/acuacultura    0:1    1:2
+2,4    0    0
+
+:cubo/agricultura    0:1    1:2
+2,4    0    0
+
+:cubo/apicultura    0:1    1:2
+2,4    0    0
+
+:cubo/bovino    0:1    1:2
+2,4    0    0
+
+:cubo/conservacion    0:1
+2,4    0
+
+:cubo/e_renov    0:1    1:2
+2,4    0    0
+
+:cubo/forstal    0:1
+2,4    0
+
+:cubo/industrial    0:1
+2,4    0
+
+:cubo/mineria    0:1    1:2
+2,4    0    0
+
+:cubo/mm    0:1    1:2
+2,4    0    0
+
+:cubo/pesca    0:1
+2,4    0
+
+:cubo/porcino    0:1    1:2
+2,4    0    0
+
+:cubo/turismo    0:1
+2,4    0
+
+:cubo/urbano    0:1    1:2
+2,4    0    0
+
+:cubo/acuacultura    0:1
+6,2    0
+
+:cubo/agricultura    0:1
+6,2    0
+
+:cubo/apicultura    0:1    1:2
+6,2    0    0
+
+:cubo/bovino    0:1
+6,2    0
+
+:cubo/conservacion    0:1
+6,2    0
+
+:cubo/e_renov    0:1
+6,2    0
+
+:cubo/forstal    0:1
+6,2    0
+
+:cubo/industrial    0:1
+6,2    0
+
+:cubo/mineria    0:1
+6,2    0
+
+:cubo/mm    0:1    1:2
+6,2    0    0
+
+:cubo/pesca    0:1    1:2
+6,2    0    0
+
+:cubo/porcino    0:1
+6,2    0
+
+:cubo/turismo    0:1
+6,2    0
+
+:cubo/urbano    0:1    1:2
+6,2    0    0
+
+:cubo/acuacultura    0:1
+6,4    0
+
+:cubo/agricultura    0:1
+6,4    0
+
+:cubo/apicultura    0:1    1:2
+6,4    0    0
+
+:cubo/bovino    0:1
+6,4    0
+
+:cubo/conservacion    0:1
+6,4    0
+
+:cubo/e_renov    0:1
+6,4    0
+
+:cubo/forstal    0:1
+6,4    0
+
+:cubo/industrial    0:1
+6,4    0
+
+:cubo/mineria    0:1
+6,4    0
+
+:cubo/mm    0:1    1:2
+6,4    0    0
+
+:cubo/pesca    0:1    1:2
+6,4    0    0
+
+:cubo/porcino    0:1
+6,4    0
+
+:cubo/turismo    0:1
+6,4    0
+
+:cubo/urbano    0:1    1:2
+6,4    0    0
+
+:cubo/acuacultura    0:1
+7,2    0
+
+:cubo/agricultura    0:1
+7,2    0
+
+:cubo/apicultura    0:1    1:2
+7,2    0    0
+
+:cubo/bovino    0:1
+7,2    0
+
+:cubo/conservacion    0:1
+7,2    0
+
+:cubo/e_renov    0:1
+7,2    0
+
+:cubo/forstal    0:1
+7,2    0
+
+:cubo/industrial    0:1
+7,2    0
+
+:cubo/mineria    0:1
+7,2    0
+
+:cubo/mm    0:1
+7,2    0
+
+:cubo/pesca    0:1    1:2
+7,2    0    0
+
+:cubo/porcino    0:1
+7,2    0
+
+:cubo/turismo    0:1
+7,2    0
+
+:cubo/urbano    0:1    1:2
+7,2    0    0
+
+:cubo/acuacultura    0:1
+7,4    0
+
+:cubo/agricultura    0:1
+7,4    0
+
+:cubo/apicultura    0:1    1:2
+7,4    0    0
+
+:cubo/bovino    0:1
+7,4    0
+
+:cubo/conservacion    0:1
+7,4    0
+
+:cubo/e_renov    0:1
+7,4    0
+
+:cubo/forstal    0:1
+7,4    0
+
+:cubo/industrial    0:1
+7,4    0
+
+:cubo/mineria    0:1
+7,4    0
+
+:cubo/mm    0:1
+7,4    0
+
+:cubo/pesca    0:1    1:2
+7,4    0    0
+
+:cubo/porcino    0:1
+7,4    0
+
+:cubo/turismo    0:1
+7,4    0
+
+:cubo/urbano    0:1    1:2
+7,4    0    0
+
+:cubo/acuacultura    0:1    1:2
+9,2    0    0
+
+:cubo/agricultura    0:1
+9,2    0
+
+:cubo/apicultura    0:1    1:2
+9,2    0    0
+
+:cubo/bovino    0:1    1:2
+9,2    0    0
+
+:cubo/conservacion    0:1    1:2
+9,2    0    0
+
+:cubo/e_renov    0:1    1:2
+9,2    0    0
+
+:cubo/forstal    0:1    1:2
+9,2    0    0
+
+:cubo/industrial    0:1
+9,2    0
+
+:cubo/mineria    0:1
+9,2    0
+
+:cubo/mm    0:1    1:2
+9,2    0    0
+
+:cubo/pesca    0:1
+9,2    0
+
+:cubo/porcino    0:1    1:2
+9,2    0    0
+
+:cubo/turismo    0:1
+9,2    0
+
+:cubo/urbano    0:1    1:2
+9,2    0    0
+
+:cubo/acuacultura    0:1
+9,4    0
+
+:cubo/agricultura    0:1
+9,4    0
+
+:cubo/apicultura    0:1    1:2
+9,4    0    0
+
+:cubo/bovino    0:1
+9,4    0
+
+:cubo/conservacion    0:1    1:2
+9,4    0    0
+
+:cubo/e_renov    0:1    1:2
+9,4    0    0
+
+:cubo/forstal    0:1    1:2
+9,4    0    0
+
+:cubo/industrial    0:1
+9,4    0
+
+:cubo/mineria    0:1
+9,4    0
+
+:cubo/mm    0:1    1:2
+9,4    0    0
+
+:cubo/pesca    0:1
+9,4    0
+
+:cubo/porcino    0:1    1:2
+9,4    0    0
+
+:cubo/turismo    0:1
+9,4    0
+
+:cubo/urbano    0:1    1:2
+9,4    0    0
+
+:cubo/acuacultura    0:1
+11,2    0
+
+:cubo/agricultura    0:1
+11,2    0
+
+:cubo/apicultura    0:1    1:2
+11,2    0    0
+
+:cubo/bovino    0:1
+11,2    0
+
+:cubo/conservacion    0:1
+11,2    0
+
+:cubo/e_renov    0:1
+11,2    0
+
+:cubo/forstal    0:1
+11,2    0
+
+:cubo/industrial    0:1
+11,2    0
+
+:cubo/mineria    0:1
+11,2    0
+
+:cubo/mm    0:1
+11,2    0
+
+:cubo/pesca    0:1
+11,2    0
+
+:cubo/porcino    0:1    1:2
+11,2    0    0
+
+:cubo/turismo    0:1
+11,2    0
+
+:cubo/urbano    0:1    1:2
+11,2    0    0
+
+:cubo/acuacultura    0:1
+11,4    0
+
+:cubo/agricultura    0:1
+11,4    0
+
+:cubo/apicultura    0:1    1:2
+11,4    0    0
+
+:cubo/bovino    0:1
+11,4    0
+
+:cubo/conservacion    0:1
+11,4    0
+
+:cubo/e_renov    0:1
+11,4    0
+
+:cubo/forstal    0:1
+11,4    0
+
+:cubo/industrial    0:1
+11,4    0
+
+:cubo/mineria    0:1
+11,4    0
+
+:cubo/mm    0:1
+11,4    0
+
+:cubo/pesca    0:1
+11,4    0
+
+:cubo/porcino    0:1    1:2
+11,4    0    0
+
+:cubo/turismo    0:1
+11,4    0
+
+:cubo/urbano    0:2
+11,4    0
+
+:cubo/acuacultura    0:1
+14,2    0
+
+:cubo/agricultura    0:1
+14,2    0
+
+:cubo/apicultura    0:1
+14,2    0
+
+:cubo/bovino    0:1
+14,2    0
+
+:cubo/conservacion    0:1
+14,2    0
+
+:cubo/e_renov    0:1
+14,2    0
+
+:cubo/forstal    0:1
+14,2    0
+
+:cubo/industrial    0:1
+14,2    0
+
+:cubo/mineria    0:1
+14,2    0
+
+:cubo/mm    0:1
+14,2    0
+
+:cubo/pesca    0:1
+14,2    0
+
+:cubo/porcino    0:1
+14,2    0
+
+:cubo/turismo    0:1
+14,2    0
+
+:cubo/urbano    0:2
+14,2    0
+
+:cubo/acuacultura    0:1
+14,4    0
+
+:cubo/agricultura    0:1
+14,4    0
+
+:cubo/apicultura    0:1
+14,4    0
+
+:cubo/bovino    0:1
+14,4    0
+
+:cubo/conservacion    0:1
+14,4    0
+
+:cubo/e_renov    0:1
+14,4    0
+
+:cubo/forstal    0:1
+14,4    0
+
+:cubo/industrial    0:1
+14,4    0
+
+:cubo/mineria    0:1
+14,4    0
+
+:cubo/mm    0:1
+14,4    0
+
+:cubo/pesca    0:1
+14,4    0
+
+:cubo/porcino    0:1
+14,4    0
+
+:cubo/turismo    0:1
+14,4    0
+
+:cubo/urbano    0:2
+14,4    0
+
