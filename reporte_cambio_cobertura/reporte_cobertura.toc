@@ -1,17 +1,17 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {spanish}{}
-\contentsline {section}{\numberline {1}Resumen}{2}{}%
-\contentsline {section}{\numberline {2}Matriz de transición}{3}{}%
-\contentsline {section}{\numberline {3}Pesos de evidencia}{5}{}%
-\contentsline {subsection}{\numberline {3.1}Preparación de capas adicionales}{5}{}%
-\contentsline {subsection}{\numberline {3.2}Rangos de los coeficientes}{5}{}%
-\contentsline {subsection}{\numberline {3.3}Correlación}{6}{}%
-\contentsline {subsection}{\numberline {3.4}Coeficientes de evidencia}{7}{}%
-\contentsline {section}{\numberline {4}Análisis de parches}{7}{}%
-\contentsline {subsection}{\numberline {4.1}Extracción de parches nuevos}{7}{}%
-\contentsline {subsection}{\numberline {4.2}Proporción de parches disconexos}{8}{}%
-\contentsline {subsection}{\numberline {4.3}Cálculo de estadísticas de parches}{8}{}%
-\contentsline {section}{\numberline {5}Calibración de la isometría}{8}{}%
-\contentsline {subsection}{\numberline {5.1}Simulaciones variando la isometría}{9}{}%
-\contentsline {subsection}{\numberline {5.2}Determinación de la isometría óptima}{9}{}%
-\contentsline {section}{\numberline {6}Escenario tendencial}{10}{}%
+\contentsline {section}{\numberline {1}Resumen}{3}{section.1}%
+\contentsline {section}{\numberline {2}Matriz de transición}{4}{section.2}%
+\contentsline {section}{\numberline {3}Pesos de evidencia}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Preparación de capas adicionales}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Rangos de los coeficientes}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Correlación}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Coeficientes de evidencia}{8}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Análisis de parches}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Extracción de parches nuevos}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Proporción de parches disconexos}{9}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Cálculo de estadísticas de parches}{9}{subsection.4.3}%
+\contentsline {section}{\numberline {5}Calibración de la isometría}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Simulaciones variando la isometría}{10}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Determinación de la isometría óptima}{10}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Escenario tendencial}{11}{section.6}%
