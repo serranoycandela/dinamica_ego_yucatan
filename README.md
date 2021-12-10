@@ -1,11 +1,3 @@
-﻿![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.001.png)![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.002.jpeg)![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.003.png)
-
-**Reporte técnico sobre escenarios de cambio de cobertura generados con un modelo markoviano**
-
-Fidel Serrano Candela
-
-diciembre 2021
-
 **Índice**
 
 1. [**Resumen](#_page2_x56.69_y56.69) **3**
@@ -27,7 +19,7 @@ diciembre 2021
 
 Este documento describe un modelo dinámico de cambio de cobertura para el estado de Yucatán, desarrollado en el marco de modelación DinamicaEGO. Es un modelo dinámico que cambia anualmente aplicando dos formas generales de cambiar la cobertura, expandir parches existentes y crear nuevos parches (functores expander y patcher). Estos functores expanden o crean nuevos parches basados en dos probabilidades, una general que se aplica a todas las celdas (matriz de transición) y otra que se aplica heterogéneamente en el territorio (pesos de evidencia). La matriz de transición se puede calcular directamente a partir de la cobertura del territorio, mientras que los pesos de evidencia requieren capas geográficas adicionales, estas capas adicionales suelen contener información sobre aspectos que influyen en el cambio de cobertura. En este modelo se utilizaron como capas adicionales las capas de aptitud del territorio para cada sector productivo, que se crearon en el proceso de actualización del Ordenamiento Ecológico del Territorio del Estado de Yucatán.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.004.png)
+![](reporte_cambio_cobertura/figuras/modelo.png)
 
 Figura 2: Modelo markoviano (DinamicaEGO)
 
