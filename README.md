@@ -20,13 +20,13 @@ Lamatrizdetransiciónesunacuantificacióndelaproporcióndeceldasquecambiaronacad
 
 Figura 3: Modelo en DinamicaEGO para calcular la matriz de transición
 
-Para nuestro caso se utilizaron la series 5 y 6 de uso de suelo y vegetación de INEGI,que correspon- den a los años de 2011 y 2014 respectivamente, con una reclasificación que considera 8 categorías. El resultado del modelo que se ilustra en la figura 2, [es ](#_page3_x56.69_y190.35)un archivo en formato csv que contiene la matriz de transición en el formato de análisis de redes:
+Para nuestro caso se utilizaron la series 5 y 6 de uso de suelo y vegetación de INEGI,que correspon- den a los años de 2011 y 2014 respectivamente, con una reclasificación que considera 8 categorías. El resultado del modelo que se ilustra en la figura 2, es un archivo en formato csv que contiene la matriz de transición en el formato de análisis de redes:
 
 Tabla 1: Matriz de transición
 
 Tabla 2: Categorías de cobertura From To Rate
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.006.png) Categoría Descripción
+Categoría Descripción
 
 PAGE4
 
@@ -52,7 +52,7 @@ PAGE4
 
 1 Acuícola
 
-2 Agropecuario![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.007.png)
+2 Agropecuario
 
 4 Asentamiento humano
 
@@ -68,21 +68,21 @@ PAGE
 
 1) Serie 5 (2011)
 
-![](reporte_cambio_cobertura/figuras/serie6f.png)
+![](reporte_cambio_cobertura/figuras/serie6.png)
 
 2) Serie 6 (2014)
 
 Figura 4: Series 5 y 6 de uso de suelo y vegetación de INEGI, re-clasificadas.
 
-3. **Pesos de evidencia**
+**Pesos de evidencia**
 
-Los pesos de evidencia es un método Bayesiano que es usado tradicionalmente por geólogos para identificar áreas potenciales para fenómenos geológicos como la mineralización y la sismicidad (Ag- terberg, [1992). ](#_page13_x56.69_y277.67)DinamicaEGO implementa una adaptación de este método para calcular las relaciones empíricas de variables espaciales.
+Los pesos de evidencia es un método Bayesiano que es usado tradicionalmente por geólogos para identificar áreas potenciales para fenómenos geológicos como la mineralización y la sismicidad (Ag- terberg, 1992). DinamicaEGO implementa una adaptación de este método para calcular las relaciones empíricas de variables espaciales.
 
-1. **Preparación de capas adicionales**
+**Preparación de capas adicionales**
 
 Para utilizar el módulo de DinamicaEGO que sirve para calcular los pesos de evidencia, es necesario preparar un cubo, es decir, un raster multibanda con las capas adicionales, que en nuestro caso son las capas de aptitud para los sectores productivos. Estas capas fueron creadas en el contexto de la actualiza- ción del Ordenamiento Ecológico Territorial del Estado de Yucatán en 2021. Las aptitudes del territorio que se consideraron fueron: porocino-avícola, bovino, minería, milpa maya, industrial, turismo, pesca, forestal, conservación, apicultura, agricultura, acuacultura, urbano y energía renovable.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.010.png)
+![](reporte_cambio_cobertura/figuras/cubo.png)
 
 Figura 5: Modelo en DinamicaEGO para ensamblar el cubo con las capas adicionales
 
@@ -90,15 +90,15 @@ Figura 5: Modelo en DinamicaEGO para ensamblar el cubo con las capas adicionales
 
 En el caso de que las capas adicionales sean de variables continuas, se requiere establecer los cortes para categorizarlas antes de calcular los pesos de evidencia. La figura 6 mu[estra](#_page6_x56.69_y49.18) el modelo en Dinami- caEGO para calcular estos rangos. El resultado es un archivo con terminación dcf, que será el insumo para descartar correlaciones entre las capas y para obtener los coeficientes de evidencia.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.011.png)
+![](reporte_cambio_cobertura/figuras/renges.png)
 
 Figura 6: Modelo en DinamicaEGO para calcular los rangos de los pesos de evidencia
 
 3. **Correlación**
 
-Una de las ventajas del método de pesos de evidencia es que el efecto de cada capa geográfica puede calcularse independientemente. La única suposición que se requiere es que las capas adicionales sean espacialmente independientes. Esta prueba se puede realizar por medio de un módulo de DinamicaE- GO que compara por pares las capas adicionales mediante el Coeficiente de Cramers, el Coeficiente de Contingencia y la Incertidumbre Informativa Conjunta (Bonham-Carter, 1994[). Com](#_page13_x56.69_y309.87)o resultado de estas pruebas, si algún par de capas resultan correlacionadas se puede eliminar alguna de las dos o combinar entre ellas.
+Una de las ventajas del método de pesos de evidencia es que el efecto de cada capa geográfica puede calcularse independientemente. La única suposición que se requiere es que las capas adicionales sean espacialmente independientes. Esta prueba se puede realizar por medio de un módulo de DinamicaE- GO que compara por pares las capas adicionales mediante el Coeficiente de Cramers, el Coeficiente de Contingencia y la Incertidumbre Informativa Conjunta (Bonham-Carter, 1994). Como resultado de estas pruebas, si algún par de capas resultan correlacionadas se puede eliminar alguna de las dos o combinar entre ellas.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.012.png)
+![](reporte_cambio_cobertura/figuras/correlacion.png)
 
 Figura 7: Modelo en DinamicaEGO para generar un reporte de correlaciones
 
@@ -106,9 +106,9 @@ Los resultados muestran que no hay correlaciones suficientemente altas para just
 
 4. **Coeficientes de evidencia**
 
-En el último paso para obtener los pesos de evidencia se utilizan los rangos obtenidos anteriormente en conjunción con el cubo de capas adicionales. La figura 8 m[uestra](#_page7_x56.69_y128.00) el modelo en DinamicaEGO que lo hace.
+En el último paso para obtener los pesos de evidencia se utilizan los rangos obtenidos anteriormente en conjunción con el cubo de capas adicionales. La figura 8 muestra el modelo en DinamicaEGO que lo hace.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.013.png)
+![](reporte_cambio_cobertura/figuras/evidence.png)
 
 Figura 8: Modelo en DinamicaEGO para calcular los pesos de evidencia
 
@@ -122,7 +122,7 @@ Para la extracción de parches nuevos se desarrolló un código de Python en QGI
 
 El resultado es una carpeta con capas vectoriales para cada tipo de transición, estas capas vectoriales contienen los objetos espaciales, así como los datos asociados a este (área, categoría previa, contigüidad con un parche previo).
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.014.png)
+![](reporte_cambio_cobertura/figuras/parches.png)
 
 Figura 9: Parches agropecuarios nuevos en QGIS
 
@@ -148,35 +148,35 @@ DinamicaEGO guarda las rutas a las capas de insumos como rutas relativas, es dec
 
 Una vez creadas las carpetas con sus respectivos modelos, se corrieron todas las simulaciones y se procedióahacerlascomparacionesconloesperado,pararealizarlascomparacionesseutilizóunmódulo deDinamicaEGOquecalculalasimilituddelasdiferenciasyrequierelascapasinicialyfinalyelresultado de una simulación específica. Se aplicaron estás comparaciones para las 20 simulaciones de cada una de
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.015.png)
+![](reporte_cambio_cobertura/figuras/similitud.png)
 
 Figura 10: Modelo en DinamicaEGO para calcular similitud de las diferencias
 
 las 21 isometrías probadas, es decir un total de 420 simulaciones y sus respectivas comparaciones con lo esperado. La figura [11 m](#_page10_x56.69_y49.18)uestra los resultados de estas comparaciones. Con lo cual podemos concluir que la isometría óptima es 1.0, y tomaremos ese valor para generar escenarios tendenciales.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.016.png)
+![](reporte_cambio_cobertura/figuras/escenario_2030.png)
 
 Figura 11: Diagrama de caja de la similitud de las diferencias por valor de isometría
 
 6. **Escenario tendencial**
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.017.png)
+![](reporte_cambio_cobertura/figuras/similitud.png)
 
 Figura 12: Modelo en DinamicaEGO para generar escenarios tendenciales
 
 Una vez encontrado el valor óptimo para la isometría, se generaron escenarios tendenciales para el año 2030. Es importante hacer notar que el modelo es estocástico en el sentido de que se basa en probabilidades de transición y cada escenario producido será único. Por esta razón se generaron 10 escenarios tendenciales con los mismos parámetros. El modelo en DinamicaEGO que produce estos esce- narios se muestra en la figura 12[ y ](#_page10_x56.69_y458.72)está disponible en: [https://github.com/serranoycandela/dinamica_ ego_yucatan/blob/main/escenarios_2030/allocate_change_2030_anual.egoml.](https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/escenarios_2030/allocate_change_2030_anual.egoml)
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.018.png)
+![](reporte_cambio_cobertura/figuras/modelo_escenarios.png)
 
 Figura 13: Una de las repeticiones del escenario tendencial 2030
 
-Finalmente en la figura[13 se](#_page11_x56.69_y153.74) muestra una de las 10 repeticiones realizadas con el modelo tendencial. Por razones de capacidad de almacenamiento los resultados finales no se incluyeron en el repositorio, sin embargo están disponibles en la carpeta de trabajo que se entrega con este documento. En todos los escenarios tendenciales es evidente que la mayor transformación del territorio en los próximos años, de no tomarse medidas preventivas, será la perdida de selva en favor de la agricultura y la ganadería.
+Finalmente en la figura 13 se muestra una de las 10 repeticiones realizadas con el modelo tendencial. Por razones de capacidad de almacenamiento los resultados finales no se incluyeron en el repositorio, sin embargo están disponibles en la carpeta de trabajo que se entrega con este documento. En todos los escenarios tendenciales es evidente que la mayor transformación del territorio en los próximos años, de no tomarse medidas preventivas, será la perdida de selva en favor de la agricultura y la ganadería.
 
 Con este modelo tendencial listo, se pueden generar escenarios tendenciales corriendo el mode- lo sin modificarlo. Para correr el modelo es suficiente instalar DinamicaEGO y copiar la carpeta /FO- MIX/fmx\_dinamica\_ego/escenarios\_2030, que se encuentra en el sistema de almacenamiento remoto del área de Planeación Colaborativa. Esta carpeta contiene todos los insumos para correr el modelo y los archivos csv que se describen en la tabla 3, [así](#_page12_x56.69_y49.18) como el modelo mismo, que es el archivo termina- ción .egoml y que se corre en DinamicaEGO. DinamicaEGO está disponible para los sistemas operati- vos Microsoft Windows, GNU / Linux, y Aple MacOS en la siguiente url: [https://csr.ufmg.br/dinamica/ dinamica-5/](https://csr.ufmg.br/dinamica/dinamica-5/)
 
 Tabla 3: Archivos que modifican el resultado del modelo
 
-Nombre Descripción![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.019.png)
+Nombre Descripción
 
 expander\_parameters.csv El tamaño promedio y varianza de parche nuevo contiguo a
 
