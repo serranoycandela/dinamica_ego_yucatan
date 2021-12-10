@@ -1,39 +1,22 @@
-**Índice**
 
-1. [**Resumen](#_page2_x56.69_y56.69) **3**
-1. [**Matriz de transición](#_page3_x56.69_y89.12) **4**
-1. [**Pesos de evidencia](#_page5_x56.69_y56.69) **6**
-1. [Preparación de capas adicionales . ](#_page5_x56.69_y159.83). . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
-1. [Rangos de los coeficientes ](#_page5_x56.69_y656.16). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6
-1. [Correlación ](#_page6_x56.69_y316.52). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7
-1. [Coeficientes de evidencia . ](#_page7_x56.69_y56.69). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
-4. [**Análisis de parches](#_page7_x56.69_y474.27) **8**
-1. [Extracción de parches nuevos . ](#_page7_x56.69_y600.91). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8
-1. [Proporción de parches disconexos .](#_page8_x56.69_y330.43) . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
-1. [Cálculo de estadísticas de parches . ](#_page8_x56.69_y489.70). . . . . . . . . . . . . . . . . . . . . . . . . . . 9
-5. [**Calibración de la isometría](#_page8_x56.69_y639.21) **9**
-1. [Simulaciones variando la isometría . .](#_page9_x56.69_y56.69) . . . . . . . . . . . . . . . . . . . . . . . . . . 10
-1. [Determinación de la isometría óptima . ](#_page9_x56.69_y306.10). . . . . . . . . . . . . . . . . . . . . . . . . 10
-6. [**Escenario tendencial](#_page10_x56.69_y427.22) **12**
-1. **Resumen**
 
 Este documento describe un modelo dinámico de cambio de cobertura para el estado de Yucatán, desarrollado en el marco de modelación DinamicaEGO. Es un modelo dinámico que cambia anualmente aplicando dos formas generales de cambiar la cobertura, expandir parches existentes y crear nuevos parches (functores expander y patcher). Estos functores expanden o crean nuevos parches basados en dos probabilidades, una general que se aplica a todas las celdas (matriz de transición) y otra que se aplica heterogéneamente en el territorio (pesos de evidencia). La matriz de transición se puede calcular directamente a partir de la cobertura del territorio, mientras que los pesos de evidencia requieren capas geográficas adicionales, estas capas adicionales suelen contener información sobre aspectos que influyen en el cambio de cobertura. En este modelo se utilizaron como capas adicionales las capas de aptitud del territorio para cada sector productivo, que se crearon en el proceso de actualización del Ordenamiento Ecológico del Territorio del Estado de Yucatán.
 
-![](reporte_cambio_cobertura/figuras/modelo.png)
+![]()
 
 Figura 2: Modelo markoviano (DinamicaEGO)
 
-Estudios previos muestran la capacidad de DinamicaEGO para modelar el cambio de uso de suelo en función de multiples factores espaciales (Cheng y col., 2020[; Yi y](#_page13_x56.69_y354.94) col., 2012[). En ](#_page13_x56.69_y400.01)términos prácticos DinamicaEGO ofrece herramientas para calcular tanto la matriz de transición como los pesos de eviden- cia, sin embargo los functores expander y patcher requieren información estadística sobre los nuevos parches como el área promedio, la varianza y la isometría para cada tipo de transición y DinamicaEGO no cuenta con módulos para calcular estas estadísticas. El área promedio y la varianza por tipo de tran- sición se pueden calcular con una combinación de códigos de Python que corren en QGIS y códigos en R, mientras que la isometría se puede obtener en un proceso de calibración.
+Estudios previos muestran la capacidad de DinamicaEGO para modelar el cambio de uso de suelo en función de multiples factores espaciales (Cheng y col., 2020; Yi y col., 2012). En términos prácticos DinamicaEGO ofrece herramientas para calcular tanto la matriz de transición como los pesos de evidencia, sin embargo los functores expander y patcher requieren información estadística sobre los nuevos parches como el área promedio, la varianza y la isometría para cada tipo de transición y DinamicaEGO no cuenta con módulos para calcular estas estadísticas. El área promedio y la varianza por tipo de tran- sición se pueden calcular con una combinación de códigos de Python que corren en QGIS y códigos en R, mientras que la isometría se puede obtener en un proceso de calibración.
 
-En las secciones 2 y 3 se describen los cálculos de la matriz de transición y los pesos de evidencia dentro de DinamicaEGO, las secciones 4 y 5 describen la metodología para obtener la información sobre la distribución del área de los nuevos parches y el proceso de calibración para obtener la isometría y
+En las secciones 2 y 3 se describen los reporte_cambio_cobertura/figuras/modelo.pngcálculos de la matriz de transición y los pesos de evidencia dentro de DinamicaEGO, las secciones 4 y 5 describen la metodología para obtener la información sobre la distribución del área de los nuevos parches y el proceso de calibración para obtener la isometría y
 
 finalmente la sección 6 describe el modelo ya calibrado y los escenarios que produce.
 
-2. **Matriz de transición**
+**Matriz de transición**
 
 Lamatrizdetransiciónesunacuantificacióndelaproporcióndeceldasquecambiaronacadadistinta categoría y representa la probabilidad de que siendo de una categoría cambie a cada una de las otras categorías. DinamicaEGO proporciona un módulo para calcular la matriz de transición a partir de una capa inicial y una capa final.
 
-![](Aspose.Words.5fa748dc-fb0d-4e8b-bc6e-e0ab702f3b02.005.png)
+![](reporte_cambio_cobertura/figuras/modelo_matriz.png)
 
 Figura 3: Modelo en DinamicaEGO para calcular la matriz de transición
 
