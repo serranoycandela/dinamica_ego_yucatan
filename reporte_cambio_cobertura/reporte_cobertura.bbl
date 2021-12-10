@@ -18,62 +18,50 @@
 
 
 \refsection{0}
-  \datalist[entry]{ydnt/global//global/global}
-    \entry{cheng_land_2020}{article}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=becc622f9440354d52e9885a97228ae4}{%
-           family={Cheng},
-           familyi={C\bibinitperiod},
-           given={Lin-lin},
-           giveni={L\bibinithyphendelim l\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=cb5897ebeed486d1b3475ac0620918e2}{%
-           family={Liu},
-           familyi={L\bibinitperiod},
-           given={Mei},
-           giveni={M\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=80f6684eda28ce8903cb8e726d7eaa5b}{%
-           family={Zhan},
-           familyi={Z\bibinitperiod},
-           given={Jia-qi},
-           giveni={J\bibinithyphendelim q\bibinitperiod},
+  \datalist[entry]{nyt/global//global/global}
+    \entry{agterberg_1992}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c39f3cb8faeb9feedd135aa132b316c6}{%
+           family={Agterberg},
+           familyi={A\bibinitperiod},
+           given={Frederik\bibnamedelima P.},
+           giveni={F\bibinitperiod\bibinitdelim P\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{275c47e9cdf2e358da890bafe4e23575}
-      \strng{fullhash}{2f81e497424faf6549b3d507943e6fc1}
-      \strng{bibnamehash}{2f81e497424faf6549b3d507943e6fc1}
-      \strng{authorbibnamehash}{2f81e497424faf6549b3d507943e6fc1}
-      \strng{authornamehash}{275c47e9cdf2e358da890bafe4e23575}
-      \strng{authorfullhash}{2f81e497424faf6549b3d507943e6fc1}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \strng{namehash}{c39f3cb8faeb9feedd135aa132b316c6}
+      \strng{fullhash}{c39f3cb8faeb9feedd135aa132b316c6}
+      \strng{bibnamehash}{c39f3cb8faeb9feedd135aa132b316c6}
+      \strng{authorbibnamehash}{c39f3cb8faeb9feedd135aa132b316c6}
+      \strng{authornamehash}{c39f3cb8faeb9feedd135aa132b316c6}
+      \strng{authorfullhash}{c39f3cb8faeb9feedd135aa132b316c6}
+      \field{sortinit}{A}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{Mountainous area makes up 22\% of global land, and rational land use in this area is important for sustainable development. Mentougou district has been positioned as an ecological conservation development zone of Beijing and significant land use changes have taken place since 2004. With the combination of {GIS} and Dinamica {EGO} (Environment for Geoprocessing Objects) model, the quantitative structure and spatial distribution of land use in Mentougou from 2006 to 2014 are analyzed in this paper. Considering topography has influence on the action mode of driving factors, the research area is divided into two parts based on elevation, mountainous area above 300 m, plain and shallow mountainous area below 300 m. Based on cellular automata theory, the probability of land use change is calculated by Weights of Evidence method and the spatial distribution of land use is simulated by means of two complementary spatial transition functions: Expander and Patcher. Land use pattern of Menougou in 2030 for three kinds of scenarios: trend development, rapid development and ecological protection are simulated. The comparison shows that the trend development scenario is more reasonable based on social, economic and environmental considerations and other scenarios provide a reference for improving irrational land use.}
+      \field{abstract}{The weights of evidence model for combining indicator patterns in mineral resource evaluation is briefly explained with emphasis on the effect of undiscovered deposits on the estimation of the weights and posterior probabilities. A group of six statistical tests is proposed for analyzing the interaction of two or three indicator patterns with the point pattern for mineral deposits. A distinction is made between statistics that depend on choice of unit cell size and those that are approximately or completely independent of it. Finally, weights of evidence are compared to regression coefficients obtained by means of the logistic model.}
       \field{day}{1}
-      \field{issn}{1993-0321}
-      \field{journaltitle}{Journal of Mountain Science}
-      \field{month}{2}
-      \field{number}{2}
-      \field{shortjournal}{Journal of Mountain Science}
-      \field{title}{Land use scenario simulation of mountainous districts based on Dinamica {EGO} model}
-      \field{volume}{17}
-      \field{year}{2020}
+      \field{issn}{1573-8981}
+      \field{journaltitle}{Nonrenewable Resources}
+      \field{month}{3}
+      \field{number}{1}
+      \field{shortjournal}{Nonrenewable Resources}
+      \field{title}{Combining indicator patterns in weights of evidence modeling for resource evaluation}
+      \field{volume}{1}
+      \field{year}{1992}
       \field{dateera}{ce}
-      \field{pages}{289\bibrangedash 303}
-      \range{pages}{15}
+      \field{pages}{39\bibrangedash 50}
+      \range{pages}{12}
       \verb{doi}
-      \verb 10.1007/s11629-019-5491-y
+      \verb 10.1007/BF01782111
       \endverb
       \verb{urlraw}
-      \verb https://doi.org/10.1007/s11629-019-5491-y
+      \verb https://doi.org/10.1007/BF01782111
       \endverb
       \verb{url}
-      \verb https://doi.org/10.1007/s11629-019-5491-y
+      \verb https://doi.org/10.1007/BF01782111
       \endverb
     \endentry
     \entry{cap8_1994}{inbook}{}
@@ -104,8 +92,8 @@
       \strng{editorbibnamehash}{f1418a5e57eb2d4a11129c9d9f238fd4}
       \strng{editornamehash}{f1418a5e57eb2d4a11129c9d9f238fd4}
       \strng{editorfullhash}{f1418a5e57eb2d4a11129c9d9f238fd4}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{year}
       \true{uniqueprimaryauthor}
@@ -128,50 +116,135 @@
       \verb https://www.sciencedirect.com/science/article/pii/B9780080418674500138
       \endverb
     \endentry
-    \entry{agterberg_1992}{article}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=c39f3cb8faeb9feedd135aa132b316c6}{%
-           family={Agterberg},
-           familyi={A\bibinitperiod},
-           given={Frederik\bibnamedelima P.},
-           giveni={F\bibinitperiod\bibinitdelim P\bibinitperiod},
+    \entry{cheng_land_2020}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=becc622f9440354d52e9885a97228ae4}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Lin-lin},
+           giveni={L\bibinithyphendelim l\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=cb5897ebeed486d1b3475ac0620918e2}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Mei},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=80f6684eda28ce8903cb8e726d7eaa5b}{%
+           family={Zhan},
+           familyi={Z\bibinitperiod},
+           given={Jia-qi},
+           giveni={J\bibinithyphendelim q\bibinitperiod},
            givenun=0}}%
       }
-      \strng{namehash}{c39f3cb8faeb9feedd135aa132b316c6}
-      \strng{fullhash}{c39f3cb8faeb9feedd135aa132b316c6}
-      \strng{bibnamehash}{c39f3cb8faeb9feedd135aa132b316c6}
-      \strng{authorbibnamehash}{c39f3cb8faeb9feedd135aa132b316c6}
-      \strng{authornamehash}{c39f3cb8faeb9feedd135aa132b316c6}
-      \strng{authorfullhash}{c39f3cb8faeb9feedd135aa132b316c6}
-      \field{sortinit}{1}
-      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \strng{namehash}{275c47e9cdf2e358da890bafe4e23575}
+      \strng{fullhash}{2f81e497424faf6549b3d507943e6fc1}
+      \strng{bibnamehash}{2f81e497424faf6549b3d507943e6fc1}
+      \strng{authorbibnamehash}{2f81e497424faf6549b3d507943e6fc1}
+      \strng{authornamehash}{275c47e9cdf2e358da890bafe4e23575}
+      \strng{authorfullhash}{2f81e497424faf6549b3d507943e6fc1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{abstract}{The weights of evidence model for combining indicator patterns in mineral resource evaluation is briefly explained with emphasis on the effect of undiscovered deposits on the estimation of the weights and posterior probabilities. A group of six statistical tests is proposed for analyzing the interaction of two or three indicator patterns with the point pattern for mineral deposits. A distinction is made between statistics that depend on choice of unit cell size and those that are approximately or completely independent of it. Finally, weights of evidence are compared to regression coefficients obtained by means of the logistic model.}
+      \field{abstract}{Mountainous area makes up 22\% of global land, and rational land use in this area is important for sustainable development. Mentougou district has been positioned as an ecological conservation development zone of Beijing and significant land use changes have taken place since 2004. With the combination of {GIS} and Dinamica {EGO} (Environment for Geoprocessing Objects) model, the quantitative structure and spatial distribution of land use in Mentougou from 2006 to 2014 are analyzed in this paper. Considering topography has influence on the action mode of driving factors, the research area is divided into two parts based on elevation, mountainous area above 300 m, plain and shallow mountainous area below 300 m. Based on cellular automata theory, the probability of land use change is calculated by Weights of Evidence method and the spatial distribution of land use is simulated by means of two complementary spatial transition functions: Expander and Patcher. Land use pattern of Menougou in 2030 for three kinds of scenarios: trend development, rapid development and ecological protection are simulated. The comparison shows that the trend development scenario is more reasonable based on social, economic and environmental considerations and other scenarios provide a reference for improving irrational land use.}
       \field{day}{1}
-      \field{issn}{1573-8981}
-      \field{journaltitle}{Nonrenewable Resources}
-      \field{month}{3}
-      \field{number}{1}
-      \field{shortjournal}{Nonrenewable Resources}
-      \field{title}{Combining indicator patterns in weights of evidence modeling for resource evaluation}
-      \field{volume}{1}
-      \field{year}{1992}
+      \field{issn}{1993-0321}
+      \field{journaltitle}{Journal of Mountain Science}
+      \field{month}{2}
+      \field{number}{2}
+      \field{shortjournal}{Journal of Mountain Science}
+      \field{title}{Land use scenario simulation of mountainous districts based on Dinamica {EGO} model}
+      \field{volume}{17}
+      \field{year}{2020}
       \field{dateera}{ce}
-      \field{pages}{39\bibrangedash 50}
-      \range{pages}{12}
+      \field{pages}{289\bibrangedash 303}
+      \range{pages}{15}
       \verb{doi}
-      \verb 10.1007/BF01782111
+      \verb 10.1007/s11629-019-5491-y
       \endverb
       \verb{urlraw}
-      \verb https://doi.org/10.1007/BF01782111
+      \verb https://doi.org/10.1007/s11629-019-5491-y
       \endverb
       \verb{url}
-      \verb https://doi.org/10.1007/BF01782111
+      \verb https://doi.org/10.1007/s11629-019-5491-y
       \endverb
+    \endentry
+    \entry{wei_2012}{inbook}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=9562d4d078c3e4bd368355aa7042e73d}{%
+           family={Yi},
+           familyi={Y\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=28611bd7f5889396ddc0294e16449590}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Zhiqiang},
+           giveni={Z\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2ab042ceb4fc500db4946ed985d899a6}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Maosi},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=054b420c0df050e7b7e60aeaf6c1b99c}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=ddc4bbb402286b707e45779e99da68ec}{%
+           family={Jackson},
+           familyi={J\bibinitperiod},
+           given={Thomas\bibnamedelima J.},
+           giveni={T\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{organization}{2}{%
+        {International Society for Optics}%
+        {Photonics}%
+      }
+      \list{publisher}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{811df84ffdf7db26aa92d42a24c36fdd}
+      \strng{fullhash}{08bed01c86179c76c9a6feadfe5e8bec}
+      \strng{bibnamehash}{08bed01c86179c76c9a6feadfe5e8bec}
+      \strng{authorbibnamehash}{08bed01c86179c76c9a6feadfe5e8bec}
+      \strng{authornamehash}{811df84ffdf7db26aa92d42a24c36fdd}
+      \strng{authorfullhash}{08bed01c86179c76c9a6feadfe5e8bec}
+      \strng{editorbibnamehash}{e66cd7c4003cd181cead9175d4613ff7}
+      \strng{editornamehash}{e66cd7c4003cd181cead9175d4613ff7}
+      \strng{editorfullhash}{e66cd7c4003cd181cead9175d4613ff7}
+      \field{sortinit}{Y}
+      \field{sortinithash}{6ae2ff5458ff901249c2745238c951b7}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Remote Sensing and Modeling of Ecosystems for Sustainability IX}
+      \field{title}{{Dynamic modelling of future land-use change: a comparison between CLUE-S and Dinamica EGO models}}
+      \field{volume}{8513}
+      \field{year}{2012}
+      \field{pages}{141\bibrangedash 147}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1117/12.927781
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1117/12.927781
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1117/12.927781
+      \endverb
+      \keyw{Dinamica EGO,CLUE-S,Dynamic modelling,land-use change}
     \endentry
   \enddatalist
 \endrefsection

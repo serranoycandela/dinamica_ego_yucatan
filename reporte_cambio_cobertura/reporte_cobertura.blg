@@ -1,14 +1,14 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'reporte_cobertura.blg'
-[78] biber:340> INFO - === Tue Dec  7, 2021, 12:51:25
-[94] Biber.pm:415> INFO - Reading 'reporte_cobertura.bcf'
-[167] Biber.pm:952> INFO - Found 3 citekeys in bib section 0
-[182] Biber.pm:4340> INFO - Processing section 0
-[193] Biber.pm:4531> INFO - Looking for bibtex format file 'biblio.bib' for section 0
-[194] bibtex.pm:1689> INFO - LaTeX decoding ...
-[204] bibtex.pm:1494> INFO - Found BibTeX data source 'biblio.bib'
-[273] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[273] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[273] Biber.pm:4168> INFO - Sorting list 'ydnt/global//global/global' of type 'entry' with template 'ydnt' and locale 'es-ES'
-[280] bbl.pm:654> INFO - Writing 'reporte_cobertura.bbl' with encoding 'UTF-8'
-[283] bbl.pm:757> INFO - Output to reporte_cobertura.bbl
+[65] biber:340> INFO - === Wed Dec  8, 2021, 15:22:09
+[77] Biber.pm:415> INFO - Reading 'reporte_cobertura.bcf'
+[141] Biber.pm:952> INFO - Found 4 citekeys in bib section 0
+[152] Biber.pm:4340> INFO - Processing section 0
+[160] Biber.pm:4531> INFO - Looking for bibtex format file 'biblio.bib' for section 0
+[161] bibtex.pm:1689> INFO - LaTeX decoding ...
+[169] bibtex.pm:1494> INFO - Found BibTeX data source 'biblio.bib'
+[238] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[238] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[238] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'es-ES'
+[248] bbl.pm:654> INFO - Writing 'reporte_cobertura.bbl' with encoding 'UTF-8'
+[251] bbl.pm:757> INFO - Output to reporte_cobertura.bbl

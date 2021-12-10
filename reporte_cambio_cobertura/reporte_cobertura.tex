@@ -3,12 +3,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsfonts}
+\RequirePackage[fixed]{fontawesome5}
+\RequirePackage[scaled=.90]{XCharter}
+\linespread{1.04}
 \usepackage{booktabs}
 \usepackage{siunitx}
-\usepackage[backend=biber,sorting=ydnt,block=none,bibstyle=nature,url=true,isbn=false,doi=true,maxbibnames=1000,style=apa]{biblatex}
+\usepackage[style=apa,sortcites=true,sorting=nyt,backend=biber]{biblatex}
+
 \addbibresource{biblio.bib}
 
-\usepackage[hidelinks]{hyperref}
+
+
+\usepackage[unicode = true,hidelinks,colorlinks = true,linkcolor = black,urlcolor  = blue,citecolor = black,anchorcolor = black]{hyperref}
+\usepackage{bookmark}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{geometry}
@@ -56,7 +63,7 @@
 	\bigskip
 	
 	\begin{center}
-		{\Huge \bfseries \sffamily \@title }\\[4ex] 
+		{\Huge \textbf \@title }\\[4ex] 
 		{\Large  \@author}\\[4ex] 
 		\@date\\[8ex]
 \end{center}}
@@ -83,7 +90,7 @@ Este documento describe un modelo dinámico de cambio de cobertura para el estad
 	\caption{Modelo markoviano (DinamicaEGO)}
 \end{figure}
 
-Estudios previos muestran la capacidad de DinamicaEGO para modelar el cambio de uso de suelo en función de multiples factores espaciales \cite{cheng_land_2020}. En términos prácticos DinamicaEGO ofrece herramientas para calcular tanto la matriz de transición como los pesos de evidencia, sin embargo los functores expander y patcher requieren información estadística sobre los nuevos parches como el área promedio, la varianza y la isometría para cada tipo de transición y DinamicaEGO no cuenta con módulos para calcular estas estadísticas. El área promedio y la varianza por tipo de transición se pueden calcular con una combinación de códigos de Python que corren en QGIS y códigos en R, mientras que la isometría se puede obtener en un proceso de calibración.
+Estudios previos muestran la capacidad de DinamicaEGO para modelar el cambio de uso de suelo en función de multiples factores espaciales \parencite{cheng_land_2020, wei_2012}. En términos prácticos DinamicaEGO ofrece herramientas para calcular tanto la matriz de transición como los pesos de evidencia, sin embargo los functores expander y patcher requieren información estadística sobre los nuevos parches como el área promedio, la varianza y la isometría para cada tipo de transición y DinamicaEGO no cuenta con módulos para calcular estas estadísticas. El área promedio y la varianza por tipo de transición se pueden calcular con una combinación de códigos de Python que corren en QGIS y códigos en R, mientras que la isometría se puede obtener en un proceso de calibración.
 
 En las secciones 2 y 3 se describen los cálculos de la matriz de transición y los pesos de evidencia dentro de DinamicaEGO, las secciones 4 y 5 describen la metodología para obtener la información sobre la distribución del área de los nuevos parches y el proceso de calibración para obtener la isometría y finalmente la sección 6 describe el modelo ya calibrado y los escenarios que produce.
 
@@ -175,10 +182,10 @@ Para nuestro caso se utilizaron la series 5 y 6 de uso de suelo y vegetación de
 
 \section{Pesos de evidencia}
 
-Los pesos de evidencia es un método Bayesiano que es usado tradicionalmente por geólogos para identificar áreas potenciales para fenómenos geológicos como la mineralización y la sismicidad \cite{agterberg_1992}. DinamicaEGO implementa una adaptación de este método para calcular las relaciones empíricas de variables espaciales.
+Los pesos de evidencia es un método Bayesiano que es usado tradicionalmente por geólogos para identificar áreas potenciales para fenómenos geológicos como la mineralización y la sismicidad \parencite{agterberg_1992}. DinamicaEGO implementa una adaptación de este método para calcular las relaciones empíricas de variables espaciales.
 
 \subsection{Preparación de capas adicionales}
-Para utilizar el módulo de DinamicaEGO que sirve para calcular los pesos de evidencia, es necesario preparar un cubo con las capas adicionales, que en nuestro caso son las capas de aptitud para los sectores productivos. Estas capas fueron creadas en el contexto de la actualización del Ordenamiento Ecológico Territorial del Estado de Yucatán en 2021. 
+Para utilizar el módulo de DinamicaEGO que sirve para calcular los pesos de evidencia, es necesario preparar un cubo, es decir, un raster multibanda con las capas adicionales, que en nuestro caso son las capas de aptitud para los sectores productivos. Estas capas fueron creadas en el contexto de la actualización del Ordenamiento Ecológico Territorial del Estado de Yucatán en 2021. Las aptitudes del territorio que se consideraron fueron: porocino-avícola, bovino, minería, milpa maya, industrial, turismo, pesca, forestal, conservación, apicultura, agricultura, acuacultura, urbano y energía renovable.
 \bigskip
 \begin{figure}[H]
 	\centering
@@ -187,7 +194,6 @@ Para utilizar el módulo de DinamicaEGO que sirve para calcular los pesos de evi
 	\label{fig:cubo}
 \end{figure}
 
-El resultado del modelo que se muestra en la figura~\ref{fig:cubo} es un raster multibanda que contiene todas las capas adicionales. Este raster multibanda se utilizará para el análisis de correlación y para la generación de los coeficientes de evidencia. 
  
 \subsection{Rangos de los coeficientes}
 
@@ -201,7 +207,7 @@ El resultado del modelo que se muestra en la figura~\ref{fig:cubo} es un raster 
 	\label{fig:ranges}
 \end{figure}
 \subsection{Correlación}
-Una de las ventajas del método de pesos de evidencia es que el efecto de cada capa geográfica puede calcularse independientemente. La única suposición que se requiere es que las capas adicionales sean espacialmente independientes. Esta prueba se puede realizar por medio de un módulo de DinamicaEGO que compara por pares las capas adicionales mediante el Coeficiente de Cramers, el Coeficiente de Contingencia y la Incertidumbre Informativa Conjunta \cite{cap8_1994}. Como resultado de estas pruebas, si algún par de capas resultan correlacionadas se puede eliminar alguna de las dos o combinar entre ellas.
+Una de las ventajas del método de pesos de evidencia es que el efecto de cada capa geográfica puede calcularse independientemente. La única suposición que se requiere es que las capas adicionales sean espacialmente independientes. Esta prueba se puede realizar por medio de un módulo de DinamicaEGO que compara por pares las capas adicionales mediante el Coeficiente de Cramers, el Coeficiente de Contingencia y la Incertidumbre Informativa Conjunta \parencite{cap8_1994}. Como resultado de estas pruebas, si algún par de capas resultan correlacionadas se puede eliminar alguna de las dos o combinar entre ellas.
  
 \begin{figure}[H]
 	\centering
@@ -220,7 +226,7 @@ En el último paso para obtener los pesos de evidencia se utilizan los rangos ob
 \section{Análisis de parches}
 Esta sección describe el procedimiento externo al entorno de DinamicaEGO que se puede seguir para obtener el tamaño promedio de parche nuevo y la varianza de este tamaño. El procedimiento a grandes rasgos consiste en aislar las celdas que cambiaron de categoría, agruparlas por contigüidad, separarlas por tipo de transición, obtener sus áreas y finalmente calcular el promedio y la varianza para cada tipo de transición.
 \subsection{Extracción de parches nuevos}
-Para la extracción de parches nuevos se desarrolló un código de Python en QGIS que además de separar los grupos nuevos de celdas de cada categoría, les adiciona la información necesaria para posteriormente computar las estadísticas para cada tipo de transición, es decir, el área del grupo de celdas y la categoría mayoritaria de la que cambiaron. Para lograr esto se convierten los grupos de celdas (parches) a formato vectorial y ya en ese formato se le agregan los datos pertinentes. El código que implementa este procedimiento se puede descargar en: \textit{\url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/separate_patches_all.py}}
+Para la extracción de parches nuevos se desarrolló un código de Python en QGIS que además de separar los grupos nuevos de celdas de cada categoría, les adiciona la información necesaria para posteriormente computar las estadísticas para cada tipo de transición, es decir, el área del grupo de celdas y la categoría mayoritaria de la que cambiaron. El código que implementa este procedimiento se puede descargar en: \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/separate_patches_all.py}
 
 El resultado es una carpeta con capas vectoriales para cada tipo de transición, estas capas vectoriales contienen los objetos espaciales, así como los datos asociados a este (área, categoría previa, contigüidad con un parche previo). 
 
@@ -233,15 +239,15 @@ El resultado es una carpeta con capas vectoriales para cada tipo de transición,
 
 
 \subsection{Proporción de parches disconexos}
-Una vez preparadas las capas vectoriales, se procede a obtener las estadísticas usando el lenguaje de programación R. Los archivos vectoriales producidos en el paso anterior se componen de varios archivos, uno de ellos es la tabla con los datos de los objetos espaciales, es un archivo con terminación dbf. Los archivos dbf se pueden leer directamente en el entorno de R y una vez ahí, calcular la proporción de cada transición que sucede contiguo a un parche previo, estos datos se guardan en un archivo csv que alimentará tanto el análisis de isometría como la generación de escenarios futuros. El código que implementa este procedimiento se puede descargar en:  \textit{\url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/patch_stats_1985_2014.R}}
+Una vez preparadas las capas vectoriales, se procede a obtener las estadísticas usando el lenguaje de programación R. Los archivos vectoriales producidos en el paso anterior se componen de varios archivos, uno de ellos es la tabla con los datos de los objetos espaciales, es un archivo con terminación dbf. Los archivos dbf se pueden leer directamente en el entorno de R y una vez ahí, calcular la proporción de cada transición que sucede contiguo a un parche previo, estos datos se guardan en un archivo csv que alimentará tanto el análisis de isometría como la generación de escenarios futuros. El código que implementa este procedimiento se puede descargar en:  \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/patch_stats_1985_2014.R}
 \subsection{Cálculo de estadísticas de parches}
-Los archivos vectoriales producidos en el paso anterior se componen de varios archivos, uno de ellos es la tabla con los datos de los objetos espaciales, es un archivo con terminación dbf. Los archivos dbf se pueden leer directamente en el entorno de R y una vez ahí, calcular las estadísticas necesarias es decir, el tamaño promedio de un nuevo parche y la varianza de este tamaño, para cada tipo de transición. El código que implementa este procedimiento se puede descargar en: \textit{\url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/patch_stats_1985_2014.R}}. El resultado de este script son archivos csv en el formato que se requieren para los functores patcher y expander en DinamicaEGO.
+Los archivos vectoriales producidos en el paso anterior se componen de varios archivos, uno de ellos es la tabla con los datos de los objetos espaciales, es un archivo con terminación dbf. Los archivos dbf se pueden leer directamente en el entorno de R y una vez ahí, calcular las estadísticas necesarias es decir, el tamaño promedio de un nuevo parche y la varianza de este tamaño, para cada tipo de transición. El código que implementa este procedimiento se puede descargar en: \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/patch_analysis/patch_stats_1985_2014.R}. El resultado de este script son archivos csv en el formato que se requieren para los functores patcher y expander en DinamicaEGO.
 \section{Calibración de la isometría}
 El valor de la isometría para cada tipo de transición es utilizado por los functores patcher y expander para controlar el grado de compacidad que tendrán los nuevos parches. En términos prácticos en DinamicaEGO se utiliza como un factor que multiplica la probabilidad local a la hora de agregar nuevas celdas a un parche que se está creando. Por esta razón no existe una forma analítica de calcular la isometría, por lo que se requiere encontrar el valor óptimo para la isometría a través de un proceso de calibración. 
 \subsection{Simulaciones variando la isometría}
 Para encontrar el valor óptimo se requiere probar el modelo para distintos valores de la isometría y comparar estas simulaciones con una capa observada, en nuestro caso conseguimos eso partiendo de la serie 5 de uso de suelo y vegetación de INEGI y comparando los resultados de las simulaciones con la serie 6. Dado que el modelo es estocástico en el sentido de que se basa en probabilidades y cada vez que se corre produce resultados distintos, se corrieron 20 simulaciones para cada valor de la isometría, con el propósito de comparar cada una de estas simulaciones con la capa esperada y luego promediar estas comparaciones. Los valores que para la isometría fueron [0,0.1,0.2,...,1.9,2].
 
-DinamicaEGO guarda las rutas a las capas de insumos como rutas relativas, es decir que buscará a partir de la carpeta donde se encuentra guardado un modelo, por lo que si se copia un modelo de una carpeta a otra en la misma metacarpeta, DinamicaEGO automáticamente encontrará los insumos necesarios para correr el modelo. Aprovechando ese hecho se implementó un script de Python que crea carpetas para cada valor de la isometría y copia el mismo modelo a todas las carpetas, variando únicamente el valor de la isometría. El código que implementa este procedimiento se puede descargar en: \textit{\url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/isometry_analysis/create_run_folders.py}}
+DinamicaEGO guarda las rutas a las capas de insumos como rutas relativas, es decir que buscará a partir de la carpeta donde se encuentra guardado un modelo, por lo que si se copia un modelo de una carpeta a otra en la misma metacarpeta, DinamicaEGO automáticamente encontrará los insumos necesarios para correr el modelo. Aprovechando ese hecho se implementó un script de Python que crea carpetas para cada valor de la isometría y copia el mismo modelo a todas las carpetas, variando únicamente el valor de la isometría. El código que implementa este procedimiento se puede descargar en: \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/isometry_analysis/create_run_folders.py}
 
 
 \subsection{Determinación de la isometría óptima}
@@ -252,11 +258,11 @@ Una vez creadas las carpetas con sus respectivos modelos, se corrieron todas las
 	\caption{Modelo en DinamicaEGO para calcular similitud de las diferencias}
 \end{figure}
 \bigskip
-Se aplicaron estás comparaciones para las 20 simulaciones de cada una de las 21 isometrías probadas, es decir un total de 420 simulaciones y sus respectivas comparaciones con lo esperado. Posteriormente se promediaron los resultados por cada valor de la isometría. La figura~\ref{fig:isometria} muestra los resultados agregados por valor de la isometría.
+Se aplicaron estás comparaciones para las 20 simulaciones de cada una de las 21 isometrías probadas, es decir un total de 420 simulaciones y sus respectivas comparaciones con lo esperado. La figura~\ref{fig:isometria} muestra los resultados de estas comparaciones. Con lo cual podemos concluir que la isometría óptima es 1.0, y tomaremos ese valor para generar escenarios tendenciales.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{./figuras/similitud_isometria.png}
-	\caption{Promedio de similitud de las diferencias por valor de isometría}
+	\caption{Diagrama de caja de la similitud de las diferencias por valor de isometría}
 	\label{fig:isometria}
 \end{figure}
 \bigskip
@@ -268,7 +274,7 @@ Se aplicaron estás comparaciones para las 20 simulaciones de cada una de las 21
 	\caption{Modelo en DinamicaEGO para generar escenarios tendenciales}
 	\label{fig:modelo_escenarios}
 \end{figure}
-Una vez encontrado el valor óptimo para la isometría, se generaron escenarios tendenciales para el año 2030. Es importante hacer notar que el modelo es estocástico en el sentido de que se basa en probabilidades de transición y cada escenario producido será único. Por esta razón se generaron 10 escenarios tendenciales con los mismos parámetros. El modelo en DinamicaEGO que produce estos escenarios se muestra en la figura~\ref{fig:modelo_escenarios} y está disponible en: \textit{\url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/escenarios_2030/allocate_change_2030_anual.egoml}}.
+Una vez encontrado el valor óptimo para la isometría, se generaron escenarios tendenciales para el año 2030. Es importante hacer notar que el modelo es estocástico en el sentido de que se basa en probabilidades de transición y cada escenario producido será único. Por esta razón se generaron 10 escenarios tendenciales con los mismos parámetros. El modelo en DinamicaEGO que produce estos escenarios se muestra en la figura~\ref{fig:modelo_escenarios} y está disponible en: \url{https://github.com/serranoycandela/dinamica_ego_yucatan/blob/main/escenarios_2030/allocate_change_2030_anual.egoml}.
 
 \begin{figure}[H]
 	\centering
@@ -279,7 +285,7 @@ Una vez encontrado el valor óptimo para la isometría, se generaron escenarios 
 
 Finalmente en la figura~\ref{fig:escenario_2030} se muestra una de las 10 repeticiones realizadas con el modelo tendencial. Por razones de capacidad de almacenamiento los resultados finales no se incluyeron en el repositorio, sin embargo están disponibles en la carpeta de trabajo que se entrega con este documento. En todos los escenarios tendenciales es evidente que la mayor transformación del territorio en los próximos años, de no tomarse medidas preventivas, será la perdida de selva en favor de la agricultura y la ganadería.
 
-Con este modelo tendencial listo, se pueden generar escenarios tendenciales corriendo el modelo sin modificarlo. Para correr el modelo es suficiente instalar DinamicaEGO y copiar la carpeta /FOMIX/fmx\_dinamica\_ego/escenarios\_2030, que se encuentra en el sistema de almacenamiento remoto del área de Planeación Colaborativa. Esta carpeta contiene todos los insumos para correr el modelo y los archivos csv que se describen en la tabla~\ref{jugar}, así como el modelo mismo, que es el archivo terminación .egoml y que se corre en DinamicaEGO. DinamicaEGO está disponible para los sistemas operativos Microsoft Windows, GNU / Linux, y Aple MacOS en la siguiente url: \textit{\url{https://csr.ufmg.br/dinamica/dinamica-5/}}
+Con este modelo tendencial listo, se pueden generar escenarios tendenciales corriendo el modelo sin modificarlo. Para correr el modelo es suficiente instalar DinamicaEGO y copiar la carpeta /FOMIX/fmx\_dinamica\_ego/escenarios\_2030, que se encuentra en el sistema de almacenamiento remoto del área de Planeación Colaborativa. Esta carpeta contiene todos los insumos para correr el modelo y los archivos csv que se describen en la tabla~\ref{jugar}, así como el modelo mismo, que es el archivo terminación .egoml y que se corre en DinamicaEGO. DinamicaEGO está disponible para los sistemas operativos Microsoft Windows, GNU / Linux, y Aple MacOS en la siguiente url: \url{https://csr.ufmg.br/dinamica/dinamica-5/}
 
 
 
@@ -287,19 +293,19 @@ Con este modelo tendencial listo, se pueden generar escenarios tendenciales corr
 \begin{table}
 \begin{center}	
 \captionof{table}{Archivos que modifican el resultado del modelo}\label{jugar}
-\begin{tabular}{ l p{7cm} }
+\begin{tabular}{ l p{10cm} }
 	Nombr{e} & D{e}scripción \\
 	\midrule
 	expander\_parameters.csv & El tamaño promedio y varianza de parche nuevo contiguo a un parche previo de la misma categoría, por tipo de transición. Y la isometría por tipo de transición.\\
 	patcher\_parameters.csv & El tamaño promedio y varianza de parche nuevo no contiguo a un parche previo de la misma categoría, por tipo de transición. Y la isometría por tipo de transición. \\
 	tm5\_6\_custom.csv & Proporciones de cambio esperadas por tipo de transición. \\
-	modulate\_tm.csv & Proporción del los cambios esperados contiguos y no contiguos, por tipo de transición. 
+	modulate\_tm.csv & Proporción de los cambios esperados contiguos y no contiguos, por tipo de transición. 
 \end{tabular}
 \end{center} 
 \end{table} \\
 
 \bigskip
-Para generar escenarios alternativos, se pueden modificar los archivos csv que se describen en la tabla~\ref{jugar}, o modificar alguno de los functores del modelo mismo para editar el número iteraciones o para generar un número distinto de repeticiones. \\
+Para generar escenarios alternativos, se pueden modificar los archivos csv que se describen en la tabla~\ref{jugar}, o modificar alguno de los functores del modelo mismo para editar el número de iteraciones o para generar un número distinto de repeticiones. \\
  
 \pagebreak
 \linebreak
@@ -313,5 +319,6 @@ Adicionalmente se agradece la colaboración del M. en C. Rodrigo García Herrera
 
 
 \printbibliography
+
 
 \end{document}
